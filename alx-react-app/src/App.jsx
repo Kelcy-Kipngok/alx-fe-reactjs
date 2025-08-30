@@ -12,7 +12,7 @@ function App() {
   const [count, setCount] = useState(0)
   return (
     <>
-      <WelcomeMessage 
+      <WelcomeMessage></WelcomeMessage>
         <Header />
       <MainContent />
       <Footer />
