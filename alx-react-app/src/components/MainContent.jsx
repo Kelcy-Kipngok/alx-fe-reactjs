@@ -1,5 +1,5 @@
 
-function MainComponent() {
+function MainContent() {
     return (
         <div>
          <main>
@@ -9,4 +9,4 @@ function MainComponent() {
     );
 }
 
-export default MainComponent;
+export default MainContent;
