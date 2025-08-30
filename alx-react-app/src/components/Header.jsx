@@ -1,4 +1,4 @@
-function Header() {
+function header() {
     return (
         <div>
             <h1> My Favorite Cities</h1>
@@ -6,5 +6,5 @@ function Header() {
     );
 }
 
-export default Header
+export default header
  
