@@ -6,5 +6,5 @@ function Header() {
     );
 }
 
-export default Header <header>
+export default Header
  
