@@ -9,7 +9,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const = "UserContext", "UserContext.Provider", "value"
   return (
     <>
       <WelcomeMessage> <WelcomeMessage />
