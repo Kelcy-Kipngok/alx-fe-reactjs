@@ -1,7 +1,8 @@
 import ProfilePage from './ProfilePage';
-import UserContext from './UserContext';
+import UserContext from './UserContext';=
 
 function App() {
+  const "UserContext", "UserContext.Provider", "value"
   const userData = { name: "Jane Doe", email: "jane.doe@example.com" };
 
   return (
