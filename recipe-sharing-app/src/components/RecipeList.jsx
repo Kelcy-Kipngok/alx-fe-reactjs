@@ -2,9 +2,34 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useRecipeStore } from '../store/recipeStore';
 import DeleteRecipeButton from './DeleteRecipeButton';
-// src/components/RecipeList.jsx
 import React from 'react';
 import { useRecipeStore } from '../recipeStore';
+import React from 'react';
+import { useRecipeStore } from '../recipeStore';
+import FavoriteButton from './FavoriteButton';
+
+const RecipeList = () => {
+  const recipes = useRecipeStore((state) => state.recipes);
+
+  return (
+    <div>
+      <h2>📋 All Recipes</h2>
+      {recipes.length === 0 ? (
+        <p>No recipes yet. Add one!</p>
+      ) : (
+        recipes.map((recipe) => (
+          <div key={recipe.id} style={{ borderBottom: '1px solid #ddd', padding: '10px 0' }}>
+            <h3>{recipe.title}</h3>
+            <p>{recipe.description}</p>
+            <FavoriteButton recipeId={recipe.id} />
+          </div>
+        ))
+      )}
+    </div>
+  );
+};
+
+export default RecipeList;
 
 const RecipeList = () => {
   const filteredRecipes = useRecipeStore((state) => state.filteredRecipes);
