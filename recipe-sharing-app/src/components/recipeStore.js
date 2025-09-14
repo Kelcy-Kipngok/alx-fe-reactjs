@@ -1,6 +1,61 @@
 import { create } from 'zustand';
 // src/recipeStore.js
 import { create } from 'zustand';
+// src/recipeStore.js
+import { create } from 'zustand';
+
+export const useRecipeStore = create((set) => ({
+  recipes: [],
+  favorites: [],
+  recommendations: [],
+
+  // Add a new recipe
+  addRecipe: (newRecipe) =>
+    set((state) => ({
+      recipes: [...state.recipes, newRecipe],
+    })),
+
+  // Update recipe
+  updateRecipe: (id, updatedRecipe) =>
+    set((state) => ({
+      recipes: state.recipes.map((recipe) =>
+        recipe.id === id ? { ...recipe, ...updatedRecipe } : recipe
+      ),
+    })),
+
+  // Delete recipe
+  deleteRecipe: (id) =>
+    set((state) => ({
+      recipes: state.recipes.filter((recipe) => recipe.id !== id),
+      favorites: state.favorites.filter((fid) => fid !== id), // cleanup from favorites too
+    })),
+
+  // ✅ Favorites
+  addFavorite: (recipeId) =>
+    set((state) => ({
+      favorites: state.favorites.includes(recipeId)
+        ? state.favorites // avoid duplicates
+        : [...state.favorites, recipeId],
+    })),
+
+  removeFavorite: (recipeId) =>
+    set((state) => ({
+      favorites: state.favorites.filter((id) => id !== recipeId),
+    })),
+
+  // ✅ Recommendations (mock)
+  generateRecommendations: () =>
+    set((state) => {
+      if (state.favorites.length === 0) return { recommendations: [] };
+
+      // Mock: suggest random recipes that are NOT already in favorites
+      const recommended = state.recipes.filter(
+        (r) => !state.favorites.includes(r.id) && Math.random() > 0.5
+      );
+
+      return { recommendations: recommended };
+    }),
+}));
 
 export const useRecipeStore = create((set) => ({
   recipes: [],
