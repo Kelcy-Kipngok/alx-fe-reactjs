@@ -1,4 +1,52 @@
 import { create } from 'zustand';
+// src/recipeStore.js
+import { create } from 'zustand';
+
+export const useRecipeStore = create((set) => ({
+  recipes: [],
+  searchTerm: '',
+  filteredRecipes: [],
+
+  // Actions
+  addRecipe: (newRecipe) =>
+    set((state) => ({
+      recipes: [...state.recipes, newRecipe],
+      filteredRecipes: [...state.recipes, newRecipe], // update filtered list too
+    })),
+
+  updateRecipe: (id, updatedRecipe) =>
+    set((state) => {
+      const updatedRecipes = state.recipes.map((recipe) =>
+        recipe.id === id ? { ...recipe, ...updatedRecipe } : recipe
+      );
+      return {
+        recipes: updatedRecipes,
+        filteredRecipes: state.filterLogic(updatedRecipes, state.searchTerm),
+      };
+    }),
+
+  deleteRecipe: (id) =>
+    set((state) => {
+      const updatedRecipes = state.recipes.filter((recipe) => recipe.id !== id);
+      return {
+        recipes: updatedRecipes,
+        filteredRecipes: state.filterLogic(updatedRecipes, state.searchTerm),
+      };
+    }),
+
+  setSearchTerm: (term) =>
+    set((state) => ({
+      searchTerm: term,
+      filteredRecipes: state.filterLogic(state.recipes, term),
+    })),
+
+  // Helper function for filtering
+  filterLogic: (recipes, term) => {
+    return recipes.filter((recipe) =>
+      recipe.title.toLowerCase().includes(term.toLowerCase())
+    );
+  },
+}));
 
 // Zustand store for managing recipes
 export const useRecipeStore = create((set) => ({
