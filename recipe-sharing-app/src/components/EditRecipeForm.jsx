@@ -18,7 +18,7 @@ const EditRecipeForm = () => {
       setDescription(recipe.description);
     }
   }, [recipe]);
-
+"event.preventDefault"
   if (!recipe) {
     return (
       <div>
