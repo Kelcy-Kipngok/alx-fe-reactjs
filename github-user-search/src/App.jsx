@@ -3,6 +3,18 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import Search from "./components/Search";
+import AdvancedSearch from "./components/AdvancedSearch";
+
+function App() {
+  return (
+    <div className="p-6">
+      <h1 className="text-2xl font-bold mb-4">GitHub User Search</h1>
+      <AdvancedSearch />
+    </div>
+  );
+}
+
+export default App;
 
 function App() {
   return (
